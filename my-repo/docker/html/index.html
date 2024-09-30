@@ -1,27 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UFT-8">
-        <meta name="viewport" content="width=device-width, initical-scale=1.0">
-        <title> Mi Aplicación Web</title>
-        <style>
-            body {
-                font-family:Arial,sans-serif;
-                background-color: #f4f4f4;
-                text-align: center;
-                padding: 50px;
-            }
-            h1{
-                color: #333;
-            }
-            p{
-                color: #666;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Bienvenido a Mi Aplicacion Web</h1>
-        <p>Esta es una pagina web de ejemplo servida por Nginx dentro de un contenedor Docker.</p>
-        <p>Todo esta funcionando correctamente si ves esta pagina.</p>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <div class="error" id="errorMessage"></div>
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" placeholder="Ingresa tu usuario" required>
+        
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
+        
+        <button type="submit" class="btn">Iniciar Sesión</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Obtener los valores de los campos
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var errorMessage = document.getElementById('errorMessage');
+        
+        // Validación simple
+        if (username === '' || password === '') {
+            errorMessage.textContent = 'Por favor, completa todos los campos.';
+        } else if (username !== 'admin' || password !== '12345') {
+            errorMessage.textContent = 'Usuario o contraseña incorrectos.';
+        } else {
+            errorMessage.textContent = '';
+            alert('¡Bienvenido, ' + username + '!');
+        }
+    });
+</script>
+
+</body>
 </html>
